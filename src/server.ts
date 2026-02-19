@@ -6,9 +6,9 @@ import logger from './config/logger.config';
 import { attachCorrelationIdMiddleware } from './middlewares/correlation.middleware';
 import { problemMiddleware, submissionMiddleware, userMiddleware } from './routers/v1/reverseProxy';
 import { authMiddleware } from './middlewares/auth.middlewares';
+import { requireAdmin } from './middlewares/requireAdmin.middlewares';
 const app = express();
 
-app.use(express.json());
 
 /**
  * Registering all the routers and their corresponding routes with out app server object.
@@ -16,7 +16,8 @@ app.use(express.json());
 
 app.use(attachCorrelationIdMiddleware);
 app.use('/api/v2', v2Router);
-app.use('/api/v1/users',authMiddleware,userMiddleware)
+app.use('/api/v1/user',authMiddleware,userMiddleware)
+app.use('/api/v1/admin',authMiddleware,requireAdmin,userMiddleware)
 app.use('/api/v1/problems',authMiddleware,problemMiddleware)
 app.use('/api/v1/submissions',authMiddleware,submissionMiddleware)
 
