@@ -7,8 +7,7 @@ type ServerConfig = {
     PROBLEM_SERVICE:string
     SUBMISSION_SERVICE:string
     EVALUATION_SERVICE:string
-
-
+    JWT_ACCESS_SECRET:string
 }
 
 function loadEnv() {
@@ -23,6 +22,7 @@ export const serverConfig: ServerConfig = {
     USER_SERVICE:process.env.USER_SERVICE || "http://localhost:3004/api/v1",
     PROBLEM_SERVICE:process.env.PROBLEM_SERVICE || "http://localhost:3001/api/v1",
     EVALUATION_SERVICE:process.env.EVALUATION_SERVICE || "http://localhost:3003/api/v1",
-    SUBMISSION_SERVICE:process.env.SUBMISSION_SERVICE || "http://localhost:3002/api/v1"
+    SUBMISSION_SERVICE:process.env.SUBMISSION_SERVICE || "http://localhost:3002/api/v1",
+    JWT_ACCESS_SECRET:process.env.JWT_ACCESS_SECRET || ""
 
 };

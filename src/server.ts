@@ -5,6 +5,7 @@ import { appErrorHandler, genericErrorHandler } from './middlewares/error.middle
 import logger from './config/logger.config';
 import { attachCorrelationIdMiddleware } from './middlewares/correlation.middleware';
 import { problemMiddleware, submissionMiddleware, userMiddleware } from './routers/v1/reverseProxy';
+import { authMiddleware } from './middlewares/auth.middlewares';
 const app = express();
 
 app.use(express.json());
@@ -15,9 +16,9 @@ app.use(express.json());
 
 app.use(attachCorrelationIdMiddleware);
 app.use('/api/v2', v2Router);
-app.use('/api/v1',userMiddleware)
-app.use('/api/v1',problemMiddleware)
-app.use('/api/v1',submissionMiddleware)
+app.use('/api/v1/users',authMiddleware,userMiddleware)
+app.use('/api/v1/problems',authMiddleware,problemMiddleware)
+app.use('/api/v1/submissions',authMiddleware,submissionMiddleware)
 
 
 

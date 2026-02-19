@@ -6,7 +6,7 @@ export const userMiddleware= createProxyMiddleware<Request,Response>({
     target: serverConfig.USER_SERVICE,
     changeOrigin:true,
     pathRewrite: {
-      '^/api/v1/': ''
+      '^/api/v1/users': '/users'
     },
 })
 
@@ -14,7 +14,7 @@ export const problemMiddleware= createProxyMiddleware<Request,Response>({
     target: serverConfig.PROBLEM_SERVICE,
     changeOrigin:true,
     pathRewrite: {
-      '^/api/v1/': ''
+      '^/api/v1/problems': '/problems'
     },
 })
 
@@ -23,7 +23,7 @@ export const submissionMiddleware= createProxyMiddleware<Request,Response>({
     target: serverConfig.SUBMISSION_SERVICE,
     changeOrigin:true,
     pathRewrite: {
-      '^/api/v1/': ''
+      '^/api/v1/submissions': '/submissions'
     },
 })
 
